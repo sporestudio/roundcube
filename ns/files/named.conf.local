@@ -1,0 +1,11 @@
+zone "izv.ies" {
+    type master;
+    file "/var/lib/bind/izv.ies.dns";
+    allow-transfer { 192.168.2.100; };
+};
+
+zone "1.168.192.in-addr.arpa" {
+    type master;
+    file "/var/lib/bind/izv.ies.rev";
+    allow-transfer { 192.168.2.100; };
+};
