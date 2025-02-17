@@ -1,0 +1,40 @@
+services:
+  ns:
+    image: ubuntu/bind9
+    container_name: ns
+    hostname: ns
+    restart: unless-stopped
+    volumes:
+     - ./ns/named:/etc/default/named
+     - ./ns/files/named.conf.local:/etc/bind/named.conf.local
+     - ./ns/files/named.conf.options:/etc/bind/named.conf.options
+     - ./ns/files/izv.ies.dns:/var/lib/bind/izv.ies.dns
+     - ./ns/files/izv.ies.rev:/var/lib/bind/izv.ies.rev
+    networks:
+      mail_net:
+        ipv4_address: 192.168.2.100
+
+  mail:
+    image: marooou/postfix-roundcube
+    container_name: mail
+    depends_on:
+      - ns
+    dns:
+      - 192.168.2.100
+    environment:
+      - "ADMIN_USERNAME=admin"
+      - "ADMIN_PASSWD=7"
+      - "USERS=mengano:mengano12,fulano:fulano12"
+      - "DOMAIN_NAME=izv.ies"
+    networks:
+      mail_net:
+        ipv4_address: 192.168.2.101
+    ports:
+      - "8080:80"
+
+networks:
+  mail_net:
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.2.0/24
