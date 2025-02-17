@@ -12,7 +12,7 @@ $ORIGIN izv.ies.
 
 
 ; A Records	
-ns		IN		A		192.158.2.100
+ns		IN		A		192.168.2.100
 mail	IN		A		192.168.2.101
 
 
