@@ -24,7 +24,7 @@ services:
     environment:
       - "ADMIN_USERNAME=admin"
       - "ADMIN_PASSWD=7"
-      - "USERS=mengano:mengano12,fulano:fulano12"
+      - "USERS=mengano:mengano11,fulano:fulano11"
       - "DOMAIN_NAME=izv.ies"
     networks:
       mail_net:
