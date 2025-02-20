@@ -6,10 +6,7 @@ services:
     restart: unless-stopped
     volumes:
      - ./ns/named:/etc/default/named
-     - ./ns/files/named.conf.local:/etc/bind/named.conf.local
-     - ./ns/files/named.conf.options:/etc/bind/named.conf.options
-     - ./ns/files/izv.ies.dns:/var/lib/bind/izv.ies.dns
-     - ./ns/files/izv.ies.rev:/var/lib/bind/izv.ies.rev
+     - ./ns/files:/etc/bind
     networks:
       mail_net:
         ipv4_address: 192.168.2.100
